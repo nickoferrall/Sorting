@@ -34,16 +34,38 @@ def binary_search(arr, target):
     return mid
 
 
-myArr = [1, 3, 5, 6, 7, 10]
-print(binary_search(myArr, 11))
-
 # STRETCH: write a recursive implementation of Binary Search
 
 
 def binary_search_recursive(arr, target, low, high):
 
-    middle = (low+high)/2
-
+    middle = int((low+high)/2)
     if len(arr) == 0:
         return -1  # array empty
     # TO-DO: add missing if/else statements, recursive calls
+    if low > high:
+        return -1
+    elif arr[middle] == target:
+        return middle
+    elif arr[middle] < target:
+        low = middle + 1
+        return binary_search_recursive(arr, target, low, high)
+    else:
+        high = middle - 1
+        return binary_search_recursive(arr, target, low, high)
+    return middle
+
+
+# arr1 = [-9, -8, -6, -4, -3, -2, 0, 1, 2, 3, 5, 7, 8, 9]
+arr2 = []
+
+# print(binary_search_recursive(arr1, -8, 0, len(arr1)-1))
+# print(binary_search_recursive(arr1, 0, 0, len(arr1)-1))
+print(binary_search_recursive(arr2, 6, 0, len(arr2)-1))
+# print(binary_search_recursive(arr2, 0, 0, len(arr2)-1))
+
+
+# self.assertEqual(binary_search_recursive(arr1, -8, 0, len(arr1)-1), 1)
+# self.assertEqual(binary_search_recursive(arr1, 0, 0, len(arr1)-1), 6)
+# self.assertEqual(binary_search_recursive(arr2, 6, 0, len(arr1)-1), -1)
+# self.assertEqual(binary_search_recursive(arr2, 0, 0, len(arr1)-1), -1)
